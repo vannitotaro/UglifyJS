@@ -1,9 +1,9 @@
 #! /usr/bin/env node
 // -*- js2 -*-
 
-global.sys = require(/^v0\.[012]/.test(process.version) ? "sys" : "util");
+global.sys = require(/^v?0\.[012]/.test(process.version) ? "sys" : "util");
 var fs = require("fs");
-var uglify = require("uglify-js"), // symlink ~/.node_libraries/uglify-js.js to ../uglify-js.js
+var uglify = require("../index"),
     jsp = uglify.parser,
     pro = uglify.uglify;
 
@@ -108,10 +108,10 @@ if (filename) {
         var stdin = process.openStdin();
         stdin.setEncoding("utf8");
         var text = "";
-        stdin.on("data", function(chunk){
+        stdin.addListener("data", function(chunk){
                 text += chunk;
         });
-        stdin.on("end", function() {
+        stdin.addListener("end", function() {
                 output(squeeze_it(text));
         });
 }
