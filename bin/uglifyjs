@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+#!/usr/bin/env nodejs
 // -*- js2 -*-
 
 global.sys = require(/^v?0\.[012]/.test(process.version) ? "sys" : "util");
